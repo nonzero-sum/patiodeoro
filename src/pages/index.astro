@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import HomeMenus from '../components/HomeMenus.astro';
 import HomeSections from '../components/HomeSections.astro';
 import HomeReservation from '../components/HomeReservation.astro';
+import UpcomingEvents from '../components/UpcomingEvents.astro';
 import Sponsors from '../components/Sponsors.astro';
 import Testimonials from '../components/Testimonials.astro';
 import { getSite } from '../utils/consts';
@@ -15,9 +16,9 @@ const site = await getSite();
 >
 	<Hero
 		eyebrow="Zacatlán, Puebla"
-		title="Cocina mexicana contemporánea"
-		displayWord="Contemporánea"
-		description="Menús de temporada, comedor privado y encuentros en un espacio cálido e íntimo."
+		title={site.tagline?.es ?? site.title}
+		displayWord={site.taglineHighlight?.es}
+		description="Menús de temporada, espacios y encuentros en un espacio cálido e íntimo."
 		actions={[
 			{ label: 'Explora nuestros menús', href: '/menu' },
 			{ label: 'Planea tu visita', href: '/visit' },
@@ -26,6 +27,7 @@ const site = await getSite();
 
 	<HomeMenus />
 	<HomeSections />
+	<UpcomingEvents />
 
 	<Testimonials
 		eyebrow="Lo que dicen nuestros visitantes"

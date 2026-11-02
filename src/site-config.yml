@@ -2,51 +2,55 @@ site:
   title: "Patio de Oro"
   description: "Restaurante y Centro Cultural en Zacatlán, Puebla."
   based: "Zacatlán, Puebla"
+  tagline:
+    es: "Cocina mexicana contemporánea"
+    en: "Contemporary Mexican cuisine"
+  # Palabra del tagline que se resalta en la portada (opcional)
+  taglineHighlight:
+    es: "contemporánea"
+    en: "Contemporary"
   timezone: "America/Mexico_City"
   locale: "es-MX"
   visit:
     address:
-      es: "Calle de la Terraza 123, Centro Histórico, Zacatlán, Puebla 73100"
-      en: "Calle de la Terraza 123, Centro Histórico, Zacatlán, Puebla 73100"
+      es: "Lic. Luis Cabrera Lobato 55, Col San Jose, 73310 Zacatlán, Puebla"
+      en: "Lic. Luis Cabrera Lobato 55, Col San Jose, 73310 Zacatlán, Puebla"
     # Approximate example coordinates; replace with the restaurant's exact location.
+    map: "https://maps.app.goo.gl/bbhwDLe9Q3ZCx89Y9"
     coordinates:
-      lat: 19.9647
-      lng: -97.2696
+      lat: 19.936869268506516
+      lng: -97.9612534613371
     publicTransport:
-      es:
-        - "Autobús: consulta las rutas locales hasta el Centro Histórico y continúa a pie."
-        - "Taxi: solicita que te lleven a Calle de la Terraza, en el Centro Histórico."
-      en:
-        - "Bus: take a local route to the historic center, then continue on foot."
-        - "Taxi: ask to be dropped off on Calle de la Terraza in the historic center."
+      es: "A dos cuadras del centro histórico"
+      en: "Two blocks from the historic center"
     hours:
       es:
         - day: Lunes
           schedule: Cerrado
         - day: Martes
-          schedule: 13:00–22:00
+          schedule: 15:00–22:00
         - day: Miércoles
-          schedule: 13:00–22:00
+          schedule: 15:00–22:00
         - day: Jueves
-          schedule: 13:00–22:00
+          schedule: 15:00–22:00
         - day: Viernes
-          schedule: 13:00–22:00
+          schedule: 15:00–22:00
         - day: Sábado
-          schedule: 13:00–22:00
+          schedule: 15:00–22:00
         - day: Domingo
-          schedule: 13:00–22:00
+          schedule: 15:00–22:00
       en:
         - day: Monday
           schedule: Closed
         - day: Tuesday
-          schedule: 1:00 PM–10:00 PM
+          schedule: 3:00 PM–10:00 PM
         - day: Wednesday
-          schedule: 1:00 PM–10:00 PM
+          schedule: 3:00 PM–10:00 PM
         - day: Thursday
-          schedule: 1:00 PM–10:00 PM
+          schedule: 3:00 PM–10:00 PM
         - day: Friday
-          schedule: 1:00 PM–10:00 PM
+          schedule: 3:00 PM–10:00 PM
         - day: Saturday
-          schedule: 1:00 PM–10:00 PM
+          schedule: 3:00 PM–10:00 PM
         - day: Sunday
-          schedule: 1:00 PM–10:00 PM
+          schedule: 3:00 PM–10:00 PM

@@ -16,15 +16,24 @@ const spaces = (await getCollection('spaces'))
 	.filter((space) => space.id.startsWith(`${lang}/`))
 	.sort((a, b) => a.id.localeCompare(b.id))
 	.slice(0, 2);
+const journalEntries = (await getCollection('journal'))
+	.filter((entry) => entry.id.startsWith(`${lang}/`))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 const copy = {
 	es: {
 		privateDining: {
 			eyebrow: 'Para compartir',
-			title: 'Comedor privado',
+			title: 'Espacios',
 			description: 'Descubre espacios íntimos para compartir una comida y celebrar juntos.',
 			capacity: (count: number) => `Hasta ${count} personas`,
-			link: 'Explorar espacios privados',
-			empty: 'Próximamente compartiremos más información sobre nuestros espacios privados.',
+			link: 'Explorar espacios',
+			empty: 'Próximamente compartiremos más información sobre nuestros espacios.',
+		},
+		journal: {
+			eyebrow: 'Desde la cocina',
+			title: 'Diario',
+			link: 'Leer el diario',
 		},
 		visit: {
 			eyebrow: 'Encuéntranos',
@@ -38,11 +47,16 @@ const copy = {
 	en: {
 		privateDining: {
 			eyebrow: 'Gather together',
-			title: 'Private dining',
+			title: 'Spaces',
 			description: 'Discover intimate spaces for sharing a meal and celebrating together.',
 			capacity: (count: number) => `Up to ${count} guests`,
-			link: 'Explore private dining',
-			empty: 'Private dining details are coming soon.',
+			link: 'Explore spaces',
+			empty: 'Details about our spaces are coming soon.',
+		},
+		journal: {
+			eyebrow: 'From the kitchen',
+			title: 'Journal',
+			link: 'Read the journal',
 		},
 		visit: {
 			eyebrow: 'Find us',
@@ -59,6 +73,7 @@ const text = copy[lang];
 const visit = site.visit;
 ---
 
+{spaces.length > 0 && (
 <section class="content-shell space-y-6 border-t border-border py-12">
 	<header class="flex flex-wrap items-end justify-between gap-4">
 		<div class="space-y-2">
@@ -66,29 +81,56 @@ const visit = site.visit;
 			<h2 class="section-title">{text.privateDining.title}</h2>
 			<p class="m-0 max-w-2xl text-muted">{text.privateDining.description}</p>
 		</div>
-		<a class="text-sm font-medium text-ink underline underline-offset-4" href={withBase(translatePath('/private-dining/'))}>
+		<a class="text-sm font-medium text-ink underline underline-offset-4" href={withBase(translatePath('/spaces/'))}>
 			{text.privateDining.link}
 		</a>
 	</header>
 
-	{spaces.length === 0 ? (
-		<p class="m-0 text-muted">{text.privateDining.empty}</p>
-	) : (
 		<div class="grid gap-5 sm:grid-cols-2">
-			{spaces.map((space) => (
-				<Card
-					title={space.data.name}
-					href={withBase(translatePath('/private-dining/'))}
-					description={space.data.description}
-					image={space.data.image}
-					imageAlt={space.data.name}
-				>
-					<p class="m-0">{text.privateDining.capacity(space.data.capacity)}</p>
-				</Card>
-			))}
-		</div>
-	)}
+		{spaces.map((space) => (
+			<Card
+				title={space.data.name}
+				href={withBase(translatePath('/spaces/'))}
+				description={space.data.description}
+				image={space.data.image}
+				imageAlt={space.data.name}
+			>
+				<p class="m-0">{text.privateDining.capacity(space.data.capacity)}</p>
+			</Card>
+		))}
+	</div>
 </section>
+)}
+
+{journalEntries.length > 0 && (
+<section class="content-shell space-y-6 border-t border-border py-12">
+	<header class="flex flex-wrap items-end justify-between gap-4">
+		<div class="space-y-2">
+			<p class="eyebrow m-0">{text.journal.eyebrow}</p>
+			<h2 class="section-title">{text.journal.title}</h2>
+		</div>
+		<a class="text-sm font-medium text-ink underline underline-offset-4" href={withBase(translatePath('/journal/'))}>
+			{text.journal.link}
+		</a>
+	</header>
+
+	<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+		{journalEntries.map((entry) => {
+			const slug = entry.id.replace(/^[^/]+\//, '');
+			return (
+				<Card
+					title={entry.data.title}
+					href={withBase(translatePath(`/journal/${slug}/`))}
+					description={entry.data.description}
+					date={entry.data.pubDate}
+					image={entry.data.heroImage}
+					imageAlt={entry.data.title}
+				/>
+			);
+		})}
+	</div>
+</section>
+)}
 
 <section class="content-shell space-y-6 border-t border-border py-12">
 	<header class="space-y-2">
@@ -104,7 +146,7 @@ const visit = site.visit;
 		<div class="space-y-2">
 			<h3 class="item-title">{text.visit.publicTransport}</h3>
 			<ul class="m-0 list-disc space-y-2 pl-5 text-muted">
-				{visit.publicTransport[lang].map((recommendation) => <li>{recommendation}</li>)}
+				{[visit.publicTransport[lang]].flat().map((recommendation) => <li>{recommendation}</li>)}
 			</ul>
 		</div>
 		<div class="space-y-2">

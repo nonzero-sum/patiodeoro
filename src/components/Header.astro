@@ -42,12 +42,18 @@ const homeHref = withBase(translatePath('/'));
         <HeaderLink href={translatePath('/menu/')}>
           {t('nav.menu')}
         </HeaderLink>
-        <HeaderLink href={translatePath('/private-dining/')}>
+        <HeaderLink href={translatePath('/spaces/')}>
           {t('nav.privateDining')}
         </HeaderLink>
+        {/* <HeaderLink href={translatePath('/journal/')}>
+          {t('nav.journal')}
+        </HeaderLink> */}
         <HeaderLink href={translatePath('/story/') }>
           {t('nav.story')}
         </HeaderLink>
+        {/* <HeaderLink href={translatePath('/events/')}>
+          {t('nav.events')}
+        </HeaderLink> */}
         <HeaderLink href={translatePath('/visit/') }>
           {t('nav.visit')}
         </HeaderLink>
@@ -78,24 +84,6 @@ const homeHref = withBase(translatePath('/'));
         </button>
         <SearchModal />
         <LanguagePicker />
-        <a
-          class="header-button hidden xl:inline-flex"
-          href="https://github.com/roicort/launchpad"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t('nav.visitRepository')}
-        >
-          <Icon name="tabler:brand-github" size={18} stroke-width={1.6} />
-        </a>
-        <button
-          class="header-button hidden xl:inline-flex"
-          type="button"
-          id="debug-toggle"
-          aria-label={t('nav.toggleDebugBorders')}
-          aria-pressed="false"
-        >
-          <Icon name="tabler:bug" size={18} stroke-width={1.6} />
-        </button>
         <ThemeToggle />
       </div>
     </div>
@@ -103,15 +91,6 @@ const homeHref = withBase(translatePath('/'));
 </header>
 
 <script is:inline>
-  const DEBUG_KEY = "debug-borders";
-
-  const applyDebug = (state) => {
-    const isOn = state === "on";
-    document.documentElement.dataset.debug = isOn ? "on" : "off";
-    const button = document.getElementById("debug-toggle");
-    if (button) button.setAttribute("aria-pressed", isOn ? "true" : "false");
-  };
-
   const applyNav = (state) => {
     const isOpen = state === "open";
     document.documentElement.dataset.nav = isOpen ? "open" : "closed";
@@ -123,20 +102,6 @@ const homeHref = withBase(translatePath('/'));
     }
   };
 
-  const getPreferredDebug = () => {
-    const stored = localStorage.getItem(DEBUG_KEY);
-    if (stored === "on" || stored === "off") return stored;
-    return "off";
-  };
-
-  const toggleDebug = () => {
-    const current =
-      document.documentElement.dataset.debug === "on" ? "on" : "off";
-    const next = current === "on" ? "off" : "on";
-    localStorage.setItem(DEBUG_KEY, next);
-    applyDebug(next);
-  };
-
   const toggleNav = () => {
     const current =
       document.documentElement.dataset.nav === "open" ? "open" : "closed";
@@ -144,13 +109,8 @@ const homeHref = withBase(translatePath('/'));
     applyNav(next);
   };
 
-  applyDebug(getPreferredDebug());
+  document.documentElement.dataset.debug = "off";
   applyNav("closed");
-
-  const debugButton = document.getElementById("debug-toggle");
-  if (debugButton) {
-    debugButton.addEventListener("click", toggleDebug);
-  }
 
   const navButton = document.getElementById("nav-toggle");
   if (navButton) {
@@ -253,11 +213,6 @@ const homeHref = withBase(translatePath('/'));
 
   html[data-nav='open'] header #nav-toggle {
 	display: inline-flex;
-  }
-
-  html[data-nav='open'] header #debug-toggle,
-  html[data-nav='open'] header a[aria-label='Visit the GitHub repository'] {
-	display: none;
   }
 
   :global(body.nav-open) {

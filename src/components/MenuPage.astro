@@ -29,7 +29,7 @@ const mealCategories = categories.filter((category) =>
 );
 const copy = {
 	es: {
-		eyebrow: 'Cocina mexicana contemporánea',
+		eyebrow: site.tagline?.es ?? '',
 		empty: 'Próximamente estará disponible nuestro menú.',
 		allCategories: 'Todas',
 		categories: {
@@ -55,7 +55,7 @@ const copy = {
 		},
 	},
 	en: {
-		eyebrow: 'Contemporary Mexican cuisine',
+		eyebrow: site.tagline?.en ?? '',
 		empty: 'Our menu is coming soon.',
 		allCategories: 'All',
 		categories: {

@@ -10,6 +10,8 @@ export async function getSite() {
 		title: entry?.data.title,
 		description: entry?.data.description,
 		based: entry?.data.based,
+		tagline: entry?.data.tagline,
+		taglineHighlight: entry?.data.taglineHighlight,
 		timezone: entry?.data.timezone,
 		locale: entry?.data.locale,
 		visit: entry?.data.visit,

@@ -73,6 +73,8 @@ const site = defineCollection({
 		title: z.string(),
 		description: z.string(),
 		based: z.string().optional(),
+		tagline: z.object({ es: z.string(), en: z.string() }).optional(),
+		taglineHighlight: z.object({ es: z.string(), en: z.string() }).optional(),
 		timezone: z.string().optional(),
 		locale: z.string().optional(),
 		visit: z.object({
@@ -80,13 +82,14 @@ const site = defineCollection({
 				es: z.string().min(1),
 				en: z.string().min(1),
 			}),
+			map: z.string().url().optional(),
 			coordinates: z.object({
 				lat: z.number().min(-90).max(90),
 				lng: z.number().min(-180).max(180),
 			}).optional(),
 			publicTransport: z.object({
-				es: z.array(z.string().min(1)),
-				en: z.array(z.string().min(1)),
+				es: z.union([z.string().min(1), z.array(z.string().min(1))]),
+				en: z.union([z.string().min(1), z.array(z.string().min(1))]),
 			}),
 			hours: z.object({
 				es: z.array(z.object({

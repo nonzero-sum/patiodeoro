@@ -2,6 +2,7 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import Hero from '../../components/Hero.astro';
 import HomeMenus from '../../components/HomeMenus.astro';
+import UpcomingEvents from '../../components/UpcomingEvents.astro';
 import HomeSections from '../../components/HomeSections.astro';
 import HomeReservation from '../../components/HomeReservation.astro';
 import Testimonials from '../../components/Testimonials.astro';
@@ -17,9 +18,9 @@ const site = await getSite();
 <PageLayout title={site.title}>
 	<Hero
 		eyebrow="Zacatlán, Puebla"
-		title="Contemporary Mexican cuisine"
-		displayWord="Contemporary"
-		description="Seasonal menus, private dining, and gatherings in a warm, intimate setting."
+		title={site.tagline?.en ?? site.title}
+		displayWord={site.taglineHighlight?.en}
+		description="Seasonal menus, spaces, and gatherings in a warm, intimate setting."
 		actions={[
 			{ label: 'Explore menus', href: '/en/menu' },
 			{ label: 'Plan your visit', href: '/en/visit' },
@@ -28,6 +29,7 @@ const site = await getSite();
 
 	<HomeMenus />
 	<HomeSections />
+	<UpcomingEvents />
 
 	<Testimonials eyebrow="Guest notes" title="What our guests say" />
 	<HomeReservation />

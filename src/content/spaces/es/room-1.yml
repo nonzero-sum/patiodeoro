@@ -1,2 +1,4 @@
-name: Salón Terracota
+name: Comedor
 capacity: 12
+description: Un espacio elegante y acogedor.
+image: ../../../assets/espacios/comedor.jpg

@@ -3,12 +3,12 @@ site:
   description: "Restaurante y Centro Cultural en Zacatlán, Puebla."
   based: "Zacatlán, Puebla"
   tagline:
-    es: "Cocina mexicana contemporánea"
-    en: "Contemporary Mexican cuisine"
+    es: "Cocina y centro cultural"
+    en: "Cuisine and cultural center"
   # Palabra del tagline que se resalta en la portada (opcional)
   taglineHighlight:
-    es: "contemporánea"
-    en: "Contemporary"
+    es: "cultural"
+    en: "cultural"
   timezone: "America/Mexico_City"
   locale: "es-MX"
   visit:

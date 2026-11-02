@@ -4,10 +4,9 @@ import MenuIndex from '../../../components/MenuIndex.astro';
 
 export async function getStaticPaths() {
 	const menus = await getCollection('menus');
-	const locales = new Set(
-		menus.filter((entry) => entry.id.startsWith('fr/')).map((entry) => entry.id.split('/')[0]),
-	);
-	return [...locales].map((lang) => ({ params: { lang }, props: { lang } }));
+	return menus.some((entry) => entry.id.startsWith('en/'))
+		? [{ params: { lang: 'en' }, props: { lang: 'en' } }]
+		: [];
 }
 
 const { lang } = Astro.props;

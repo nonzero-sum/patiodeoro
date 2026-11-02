@@ -5,7 +5,7 @@ import MenuPage from '../../components/MenuPage.astro';
 export async function getStaticPaths() {
 	const menus = await getCollection('menus');
 	return menus
-		.filter((entry) => entry.id.startsWith('en/'))
+		.filter((entry) => entry.id.startsWith('es/'))
 		.map((entry) => ({
 			params: { meal: entry.data.id },
 			props: { menuId: entry.data.id },
@@ -15,4 +15,4 @@ export async function getStaticPaths() {
 const { menuId } = Astro.props;
 ---
 
-<MenuPage lang="en" menuId={menuId} />
+<MenuPage lang="es" menuId={menuId} />

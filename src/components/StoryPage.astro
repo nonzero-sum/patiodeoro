@@ -4,6 +4,27 @@ import { getLangFromUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 
 const copy = {
+	es: {
+		eyebrow: 'Una mesa con historia',
+		title: 'Nuestra historia',
+		intro: 'Cocina mexicana contemporánea, marcada por las estaciones y pensada para compartir.',
+		place: {
+			eyebrow: 'El lugar',
+			title: 'Un lugar para reunirnos',
+			paragraphs: [
+				'The Menu nació como un espacio acogedor para disfrutar de la cocina mexicana contemporánea en Zacatlán. Nuestros menús siguen las estaciones y celebran los ingredientes y las tradiciones que hacen tan diversa la cocina mexicana.',
+				'Ya sea para cenar, celebrar o asistir a un evento, queremos que nuestra mesa invite a disfrutar buena comida, conversar y compartir el tiempo.',
+			],
+		},
+		chef: {
+			eyebrow: 'La cocina',
+			title: 'La mirada del chef',
+			paragraphs: [
+				'La historia de nuestro chef se cuenta a través de los menús: respeto por los ingredientes mexicanos, atención a cada estación y curiosidad por descubrir nuevos matices en sabores familiares.',
+				'En lugar de seguir un guion fijo, la cocina deja que cada estación inspire lo que llega a la mesa. El resultado es una cocina mexicana contemporánea, arraigada en la tradición y abierta al descubrimiento.',
+			],
+		},
+	},
 	en: {
 		eyebrow: 'A table with a story',
 		title: 'Our story',
@@ -12,7 +33,7 @@ const copy = {
 			eyebrow: 'The place',
 			title: 'A place to gather',
 			paragraphs: [
-				'The Menu was imagined as a welcoming place to experience contemporary Mexican cuisine in Mexico City. Our menus follow the seasons and draw on the ingredients and traditions that make Mexican cooking so diverse.',
+				'The Menu was imagined as a welcoming place to experience contemporary Mexican cuisine in Zacatlán. Our menus follow the seasons and draw on the ingredients and traditions that make Mexican cooking so diverse.',
 				'Whether guests arrive for dinner, a celebration, or an event, we want the table to make room for good food, easy conversation, and time together.',
 			],
 		},
@@ -22,27 +43,6 @@ const copy = {
 			paragraphs: [
 				"Our chef’s story is told through the menus: a respect for Mexican ingredients, an eye for the changing seasons, and the curiosity to see familiar flavors from a new angle.",
 				'Rather than follow a fixed script, the kitchen lets each season shape what comes to the table. The result is contemporary Mexican cooking grounded in tradition and open to discovery.',
-			],
-		},
-	},
-	fr: {
-		eyebrow: 'Une table, une histoire',
-		title: 'Notre histoire',
-		intro: 'Une cuisine mexicaine contemporaine, rythmée par les saisons et pensée pour être partagée.',
-		place: {
-			eyebrow: 'Le lieu',
-			title: 'Un lieu de rencontre',
-			paragraphs: [
-				'The Menu a été imaginé comme un lieu accueillant pour découvrir la cuisine mexicaine contemporaine à Mexico. Nos menus suivent les saisons et mettent à l’honneur les ingrédients et les traditions qui font la richesse de la cuisine mexicaine.',
-				'Que nos convives viennent pour un dîner, une célébration ou un événement, nous souhaitons que la table invite à savourer de bons plats, à échanger et à prendre le temps d’être ensemble.',
-			],
-		},
-		chef: {
-			eyebrow: 'La cuisine',
-			title: 'Le regard du chef',
-			paragraphs: [
-				'L’histoire de notre chef se raconte à travers les menus : le respect des ingrédients mexicains, l’attention portée aux saisons et la curiosité de redécouvrir des saveurs familières.',
-				'Plutôt que de suivre une recette immuable, la cuisine laisse chaque saison inspirer ce qui arrive à table. Le résultat : une cuisine mexicaine contemporaine, ancrée dans la tradition et ouverte à la découverte.',
 			],
 		},
 	},

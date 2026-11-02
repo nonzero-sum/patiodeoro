@@ -1,23 +1,45 @@
 export const languages = {
+  es: 'Español',
   en: 'English',
-  fr: 'Français',
 };
 
-export const defaultLang = 'en';
+export const defaultLang = 'es';
 
 // hide default language from URLs
 export const showDefaultLang = false;
 
 export const ui = {
+  es: {
+    'nav.home': 'Inicio',
+    'nav.menu': 'Menú',
+    'nav.story': 'Nuestra historia',
+    'nav.privateDining': 'Comedor privado',
+    'nav.visit': 'Visítanos',
+    'nav.twitter': 'Twitter',
+    'nav.rss': 'RSS',
+    'nav.toggleNavigation': 'Mostrar u ocultar navegación',
+    'nav.visitRepository': 'Visitar el repositorio en GitHub',
+    'nav.toggleDebugBorders': 'Mostrar u ocultar bordes de depuración',
+    'footer.menus': 'Menús',
+    'footer.allMenus': 'Todos los menús',
+    'footer.socials': 'Redes sociales',
+    'footer.address': 'Dirección',
+    'footer.hours': 'Horario',
+    'footer.allRightsReserved': 'Todos los derechos reservados.',
+    'footer.designedBy': 'Diseñado por',
+    'footer.location': 'en Zacatlán, Puebla.',
+  },
   en: {
     'nav.home': 'Home',
+    'nav.menu': 'Menu',
     'nav.story': 'Story',
     'nav.privateDining': 'Private Dining',
     'nav.visit': 'Visit',
     'nav.twitter': 'Twitter',
-    'nav.journal': 'Journal',
-    'nav.events': 'Events',
     'nav.rss': 'RSS',
+    'nav.toggleNavigation': 'Toggle navigation',
+    'nav.visitRepository': 'Visit the GitHub repository',
+    'nav.toggleDebugBorders': 'Toggle debug borders',
     'footer.menus': 'Menus',
     'footer.allMenus': 'All menus',
     'footer.socials': 'Socials',
@@ -25,24 +47,6 @@ export const ui = {
     'footer.hours': 'Hours',
     'footer.allRightsReserved': 'All rights reserved.',
     'footer.designedBy': 'Designed by',
-    'footer.inMexicoCity': 'in Mexico City.',
-  },
-  fr: {
-    'nav.home': 'Accueil',
-    'nav.story': 'Notre histoire',
-    'nav.privateDining': 'Repas privés',
-    'nav.visit': 'Visiter',
-    'nav.twitter': 'Twitter',
-    'nav.journal': 'Journal',
-    'nav.events': 'Événements',
-    'nav.rss': 'RSS',
-    'footer.menus': 'Menus',
-    'footer.allMenus': 'Tous les menus',
-    'footer.socials': 'Réseaux sociaux',
-    'footer.address': 'Adresse',
-    'footer.hours': 'Horaires',
-    'footer.allRightsReserved': 'Tous droits réservés.',
-    'footer.designedBy': 'Conçu par',
-    'footer.inMexicoCity': 'à Mexico.',
+    'footer.location': 'in Zacatlán, Puebla.',
   },
 } as const;

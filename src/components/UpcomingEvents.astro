@@ -19,15 +19,15 @@ const events = (await getCollection('events'))
 	.slice(0, 3);
 
 const copy = {
+	es: {
+		eyebrow: 'Anótalo en tu agenda',
+		title: 'Próximos eventos',
+		empty: 'Por ahora no hay eventos próximos. Vuelve pronto.',
+	},
 	en: {
 		eyebrow: 'Save the date',
 		title: 'Upcoming events',
 		empty: 'No upcoming events at the moment. Check back soon.',
-	},
-	fr: {
-		eyebrow: 'À noter',
-		title: 'Prochains événements',
-		empty: 'Aucun événement à venir pour le moment. Revenez bientôt.',
 	},
 };
 
@@ -54,7 +54,7 @@ const text = copy[lang];
 						date={event.data.eventDate}
 						image={event.data.heroImage}
 						imageAlt={event.data.title}
-						eyebrow={lang === 'fr' ? 'Événement' : 'Event'}
+						eyebrow={lang === 'es' ? 'Evento' : 'Event'}
 					/>
 				);
 			})}

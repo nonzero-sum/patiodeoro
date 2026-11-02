@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import PageLayout from '../layouts/PageLayout.astro';
 import { getSite } from '../utils/consts';
 
-type Language = 'en' | 'fr';
+type Language = 'es' | 'en';
 
 interface Props {
 	lang: Language;
@@ -17,19 +17,19 @@ const spaces = (await getCollection('spaces'))
 	.sort((a, b) => a.id.localeCompare(b.id));
 
 const copy = {
+	es: {
+		title: 'Comedor privado',
+		eyebrow: 'Un espacio para compartir',
+		description: 'Descubre nuestros espacios privados para disfrutar de una experiencia más íntima.',
+		capacity: (count: number) => `Hasta ${count} personas`,
+		empty: 'Próximamente compartiremos más información sobre nuestros espacios privados.',
+	},
 	en: {
 		title: 'Private Dining',
 		eyebrow: 'Gather together',
 		description: 'Discover our private spaces for a more intimate dining experience.',
 		capacity: (count: number) => `Seats up to ${count} guests`,
 		empty: 'Details about our private dining spaces are coming soon.',
-	},
-	fr: {
-		title: 'Repas privés',
-		eyebrow: 'À partager',
-		description: 'Découvrez nos espaces privés pour un repas plus intime.',
-		capacity: (count: number) => `Jusqu’à ${count} personnes`,
-		empty: 'Les détails de nos espaces privés seront bientôt disponibles.',
 	},
 };
 

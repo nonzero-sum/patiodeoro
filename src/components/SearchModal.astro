@@ -1,6 +1,27 @@
 ---
 import Search from "astro-pagefind/components/Search";
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const copy = {
+	es: {
+		open: 'Abrir búsqueda',
+		close: 'Cerrar búsqueda',
+		clear: 'Borrar búsqueda',
+		eyebrow: 'Buscar',
+		title: 'Encuentra lo que buscas en el sitio',
+		footnote: 'Con tecnología de Pagefind. Escribe para buscar artículos, páginas y eventos.',
+	},
+	en: {
+		open: 'Open search dialog',
+		close: 'Close search dialog',
+		clear: 'Clear search',
+		eyebrow: 'Search',
+		title: 'Find anything on the site',
+		footnote: 'Powered by Pagefind. Start typing to search posts, pages, and events.',
+	},
+}[lang];
 ---
 
 <button
@@ -9,10 +30,10 @@ import { Icon } from 'astro-icon/components';
 	aria-haspopup="dialog"
 	aria-controls="search-modal"
 	aria-expanded="false"
-	aria-label="Open search dialog"
+	aria-label={copy.open}
 	class="header-button"
 >
-	<span class="sr-only">Open search dialog</span>
+	<span class="sr-only">{copy.open}</span>
 	<span class="search-trigger__icon" aria-hidden="true">
 		<Icon name="tabler:search" size={18} stroke-width={1} />
 	</span>
@@ -25,18 +46,19 @@ import { Icon } from 'astro-icon/components';
 	aria-modal="true"
 	aria-hidden="true"
 	aria-labelledby="search-modal-title"
+	data-clear-label={copy.clear}
 	inert
 >
 	<div class="search-modal__backdrop" data-close="search"></div>
 	<div class="search-modal__panel">
 		<div class="search-modal__header">
 			<div class="search-modal__title">
-				<p class="search-modal__eyebrow">Search</p>
-				<h2 id="search-modal-title" class="compact-title">Find anything on the site</h2>
+				<p class="search-modal__eyebrow">{copy.eyebrow}</p>
+				<h2 id="search-modal-title" class="compact-title">{copy.title}</h2>
 			</div>
 			<div class="search-modal__actions">
 				<span class="search-modal__hint">Esc</span>
-				<button type="button" class="search-close" id="search-close" aria-label="Close search dialog">
+				<button type="button" class="search-close" id="search-close" aria-label={copy.close}>
 					<Icon name="tabler:x" size={16} stroke-width={1.6} />
 				</button>
 			</div>
@@ -44,7 +66,7 @@ import { Icon } from 'astro-icon/components';
 		<div id="search-root" hidden>
 			<Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
 		</div>
-		<p class="search-modal__footnote">Powered by Pagefind. Start typing to search posts, pages, and events.</p>
+		<p class="search-modal__footnote">{copy.footnote}</p>
 	</div>
 </div>
 
@@ -93,8 +115,9 @@ const setSearchVisibility = (isOpen) => {
 const addAriaToPagefind = () => {
 	const clearBtn = document.querySelector('#search-modal .pagefind-ui__search-clear');
 	if (clearBtn && !clearBtn.hasAttribute('aria-label')) {
-		clearBtn.setAttribute('aria-label', 'Clear search');
-		clearBtn.setAttribute('title', 'Clear search');
+		const clearLabel = searchModal?.dataset.clearLabel ?? 'Clear search';
+		clearBtn.setAttribute('aria-label', clearLabel);
+		clearBtn.setAttribute('title', clearLabel);
 	}
 };
 

@@ -11,17 +11,17 @@ const menus = (await getCollection('menus'))
 	.sort((a, b) => a.data.order - b.data.order);
 
 const copy = {
+	es: {
+		eyebrow: 'Desde nuestra cocina',
+		title: 'Explora nuestros menús',
+		allMenus: 'Ver todos los menús',
+		caption: 'En la mesa',
+	},
 	en: {
 		eyebrow: 'From our kitchen',
 		title: 'Explore our menus',
 		allMenus: 'View all menus',
 		caption: 'On the table',
-	},
-	fr: {
-		eyebrow: 'À notre table',
-		title: 'Découvrez nos menus',
-		allMenus: 'Voir tous les menus',
-		caption: 'Nos cartes',
 	},
 };
 

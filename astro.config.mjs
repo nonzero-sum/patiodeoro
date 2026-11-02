@@ -11,8 +11,8 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://roicort.github.io",
-  base: "/themenu",
+  site: "https://patiodeoro.com",
+  base: "/",
   integrations: [mdx(), sitemap(), pagefind(), icon()],
 
   vite: {

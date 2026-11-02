@@ -5,10 +5,10 @@ import MenuPage from '../../../components/MenuPage.astro';
 export async function getStaticPaths() {
 	const menus = await getCollection('menus');
 	return menus
-		.filter((entry) => entry.id.startsWith('fr/'))
+		.filter((entry) => entry.id.startsWith('en/'))
 		.map((entry) => ({
-			params: { lang: 'fr', meal: entry.data.id },
-			props: { lang: 'fr', menuId: entry.data.id },
+			params: { lang: 'en', meal: entry.data.id },
+			props: { lang: 'en', menuId: entry.data.id },
 		}));
 }
 

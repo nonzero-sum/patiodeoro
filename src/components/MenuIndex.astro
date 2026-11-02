@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 import { getSite } from '../utils/consts';
 import { withBase } from '../utils/slugify';
 
-type Language = 'en' | 'fr';
+type Language = 'es' | 'en';
 
 interface Props {
 	lang: Language;
@@ -26,17 +26,17 @@ if (orphanedItems.length > 0) {
 	throw new Error(`Menu items reference unknown menus: ${orphanedItems.map((item) => item.id).join(', ')}.`);
 }
 const copy = {
+	es: {
+		title: 'Nuestros menús',
+		eyebrow: 'Cocina mexicana contemporánea',
+		description: 'Elige un menú y descubre los platillos de temporada de nuestra cocina.',
+		caption: 'En la mesa',
+	},
 	en: {
 		title: 'Our menus',
 		eyebrow: 'Contemporary Mexican cuisine',
 		description: 'Choose a menu to explore seasonal dishes from our kitchen.',
 		caption: 'On the table',
-	},
-	fr: {
-		title: 'Nos menus',
-		eyebrow: 'Cuisine mexicaine contemporaine',
-		description: 'Choisissez un menu pour découvrir les plats de saison de notre cuisine.',
-		caption: 'À notre table',
 	},
 };
 const text = copy[lang];
@@ -54,7 +54,7 @@ const text = copy[lang];
 		items={menuDetails.map((details) => ({
 			title: details.data.title,
 			description: details.data.description,
-			href: withBase(`${lang === 'fr' ? '/fr' : ''}/menu/${details.data.id}/`),
+			href: withBase(`${lang === 'es' ? '' : '/en'}/menu/${details.data.id}/`),
 		}))}
 	/>
 </PageLayout>

@@ -1,14 +1,17 @@
 ---
-// Theme toggle button with local storage persistence
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const label = lang === 'es' ? 'Cambiar tema' : 'Toggle theme';
 ---
 
 <button
 	class="header-button"
 	type="button"
 	id="theme-toggle"
-	aria-label="Toggle theme"
+	aria-label={label}
 >
-	<span class="sr-only">Toggle theme</span>
+	<span class="sr-only">{label}</span>
 	<span class="theme-toggle__icon inline-flex [html[data-theme='dark']_&]:hidden" aria-hidden="true">
 		<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
 			<circle cx="12" cy="12" r="4" />
@@ -29,13 +32,14 @@ const THEMES = ['light', 'dark'];
 const getPreferredTheme = () => {
 	const stored = localStorage.getItem(STORAGE_KEY);
 	if (THEMES.includes(stored ?? '')) return stored;
-	return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	return 'dark';
 };
 
 const applyTheme = (theme) => {
 	document.documentElement.dataset.theme = theme;
 	const button = document.getElementById('theme-toggle');
-	if (button) button.setAttribute('aria-label', `Toggle theme (current: ${theme})`);
+	const spanish = document.documentElement.lang === 'es';
+	if (button) button.setAttribute('aria-label', `${spanish ? 'Cambiar tema' : 'Toggle theme'} (${spanish ? 'actual' : 'current'}: ${theme})`);
 };
 
 const nextTheme = (current) => {

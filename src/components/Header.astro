@@ -1,13 +1,11 @@
 ---
 import { getSite } from "../utils/consts";
 import { withBase } from "../utils/slugify";
+import logo from "../assets/logopatiodeoro.svg";
 import HeaderLink from "./HeaderLink.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 
 const site = await getSite();
-const [brandArticle, ...brandNameParts] = site.title.trim().split(/\s+/);
-const hasBrandArticle = brandArticle?.toLowerCase() === 'the';
-const brandName = hasBrandArticle ? brandNameParts.join(' ') : site.title;
 import SearchModal from "./SearchModal.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguagePicker from "./LanguagePicker.astro";
@@ -32,14 +30,8 @@ const homeHref = withBase(translatePath('/'));
           class="m-0 text-xs font-semibold uppercase tracking-wide xl:text-base [html[data-nav='open']_&]:text-center"
         >
           <a href={homeHref} aria-label={site.title}>
-            {hasBrandArticle ? (
-              <>
-                <span class="brand-article font-display">{brandArticle}</span>{' '}
-                <span>{brandName}</span>
-              </>
-            ) : (
-              <span>{site.title}</span>
-            )}
+            <img src={logo.src} alt="" aria-hidden="true" width="48" height="48" class="h-10 w-10 shrink-0 object-contain" />
+            <span>{site.title}</span>
           </a>
         </h1>
       </div>
@@ -48,19 +40,13 @@ const homeHref = withBase(translatePath('/'));
         class="hidden xl:flex items-center gap-2 xl:gap-3 overflow-x-auto overflow-y-visible pt-1 pb-0.5 text-[0.72rem] tracking-[0.24em] uppercase text-muted [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [--tw-pan-y:none] [&::-webkit-scrollbar]:hidden col-span-2 xl:col-auto xl:justify-self-center [html[data-nav='open']_&]:flex [html[data-nav='open']_&]:flex-col [html[data-nav='open']_&]:items-start [html[data-nav='open']_&]:gap-2 [html[data-nav='open']_&]:py-4 [html[data-nav='open']_&]:w-full [html[data-nav='open']_&]:col-span-2 [html[data-nav='open']_&]:justify-self-stretch"
       >
         <HeaderLink href={translatePath('/menu/')}>
-          Menu
+          {t('nav.menu')}
         </HeaderLink>
         <HeaderLink href={translatePath('/private-dining/')}>
           {t('nav.privateDining')}
         </HeaderLink>
-        <HeaderLink href={translatePath('/journal/') }>
-          {t('nav.journal')}
-        </HeaderLink>
         <HeaderLink href={translatePath('/story/') }>
           {t('nav.story')}
-        </HeaderLink>
-        <HeaderLink href={translatePath('/events/') }>
-          {t('nav.events')}
         </HeaderLink>
         <HeaderLink href={translatePath('/visit/') }>
           {t('nav.visit')}
@@ -73,7 +59,7 @@ const homeHref = withBase(translatePath('/'));
           id="nav-toggle"
           aria-controls="site-navigation"
           aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-label={t('nav.toggleNavigation')}
           aria-pressed="false"
         >
           <span
@@ -88,7 +74,7 @@ const homeHref = withBase(translatePath('/'));
           >
             <Icon name="tabler:x" size={18} stroke-width={1.6} />
           </span>
-          <span class="sr-only">Toggle navigation</span>
+          <span class="sr-only">{t('nav.toggleNavigation')}</span>
         </button>
         <SearchModal />
         <LanguagePicker />
@@ -97,7 +83,7 @@ const homeHref = withBase(translatePath('/'));
           href="https://github.com/roicort/launchpad"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Visit the GitHub repository"
+          aria-label={t('nav.visitRepository')}
         >
           <Icon name="tabler:brand-github" size={18} stroke-width={1.6} />
         </a>
@@ -105,7 +91,7 @@ const homeHref = withBase(translatePath('/'));
           class="header-button hidden xl:inline-flex"
           type="button"
           id="debug-toggle"
-          aria-label="Toggle debug borders"
+          aria-label={t('nav.toggleDebugBorders')}
           aria-pressed="false"
         >
           <Icon name="tabler:bug" size={18} stroke-width={1.6} />
@@ -193,11 +179,10 @@ const homeHref = withBase(translatePath('/'));
 
   @reference "tailwindcss";
 
-  .brand-article {
-	font-size: 1.15em;
-	font-weight: 400;
-	letter-spacing: 0;
-	text-transform: none;
+  header h1 a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
   }
 
   header {

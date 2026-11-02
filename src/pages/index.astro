@@ -2,7 +2,6 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
 import HomeMenus from '../components/HomeMenus.astro';
-import UpcomingEvents from '../components/UpcomingEvents.astro';
 import HomeSections from '../components/HomeSections.astro';
 import HomeReservation from '../components/HomeReservation.astro';
 import Sponsors from '../components/Sponsors.astro';
@@ -15,23 +14,22 @@ const site = await getSite();
 	title={site.title}
 >
 	<Hero
-		eyebrow="Mexico City"
-		title="Contemporary Mexican cuisine"
-		displayWord="Contemporary"
-		description="Seasonal menus, private dining, and gatherings in a warm, intimate setting."
+		eyebrow="Zacatlán, Puebla"
+		title="Cocina mexicana contemporánea"
+		displayWord="Contemporánea"
+		description="Menús de temporada, comedor privado y encuentros en un espacio cálido e íntimo."
 		actions={[
-			{ label: 'Explore menus', href: '/menu' },
-			{ label: 'Plan your visit', href: '/visit' },
+			{ label: 'Explora nuestros menús', href: '/menu' },
+			{ label: 'Planea tu visita', href: '/visit' },
 		]}
 	/>
 
 	<HomeMenus />
-	<UpcomingEvents />
 	<HomeSections />
 
 	<Testimonials
-		eyebrow="Guest notes"
-		title="What our guests say"
+		eyebrow="Lo que dicen nuestros visitantes"
+		title="Voces de nuestra mesa"
 	/>
 	<HomeReservation />
 

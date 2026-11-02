@@ -2,7 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import { getSite } from '../utils/consts';
 
-type Language = 'en' | 'fr';
+type Language = 'es' | 'en';
 
 interface Props {
 	lang: Language;
@@ -15,23 +15,23 @@ if (!site.visit) {
 }
 
 const copy = {
+	es: {
+		title: 'Visítanos',
+		description: 'Encuéntranos en Zacatlán y planea tu visita.',
+		eyebrow: 'Planea tu visita',
+		gettingHere: 'Cómo llegar',
+		address: 'Dirección',
+		publicTransport: 'Transporte público',
+		hours: 'Horario',
+	},
 	en: {
 		title: 'Visit',
-		description: 'Find us in Mexico City and plan your visit.',
+		description: 'Find us in Zacatlán and plan your visit.',
 		eyebrow: 'Plan your visit',
 		gettingHere: 'Getting here',
 		address: 'Address',
 		publicTransport: 'Public transit',
 		hours: 'Hours',
-	},
-	fr: {
-		title: 'Visiter',
-		description: 'Retrouvez-nous à Mexico et préparez votre visite.',
-		eyebrow: 'Préparez votre visite',
-		gettingHere: 'Comment venir',
-		address: 'Adresse',
-		publicTransport: 'Transports en commun',
-		hours: 'Horaires',
 	},
 };
 
@@ -69,14 +69,14 @@ const mapLink = visit.coordinates
 				{mapUrl && mapLink && (
 					<div class="space-y-3">
 						<iframe
-							title={lang === 'fr' ? 'Carte pour nous trouver' : 'Map showing how to find us'}
+							title={lang === 'es' ? 'Mapa para encontrarnos' : 'Map showing how to find us'}
 							src={mapUrl}
 							class="h-72 w-full rounded-xl border border-border"
 							loading="lazy"
 							referrerpolicy="no-referrer"
 						/>
 						<a class="text-sm font-medium text-ink underline underline-offset-4" href={mapLink} target="_blank" rel="noreferrer">
-							{lang === 'fr' ? 'Ouvrir la carte' : 'Open map'}
+							{lang === 'es' ? 'Abrir mapa' : 'Open map'}
 						</a>
 					</div>
 				)}

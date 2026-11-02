@@ -19,17 +19,17 @@ interface Props {
 const { eyebrow, title, testimonials } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const labels = {
+	es: {
+		avatar: (author: string) => `Retrato de ${author}`,
+		previous: 'Testimonio anterior',
+		next: 'Testimonio siguiente',
+		goTo: (index: number) => `Ir al testimonio ${index + 1}`,
+	},
 	en: {
 		avatar: (author: string) => `${author}'s portrait`,
 		previous: 'Previous testimonial',
 		next: 'Next testimonial',
 		goTo: (index: number) => `Go to testimonial ${index + 1}`,
-	},
-	fr: {
-		avatar: (author: string) => `Portrait de ${author}`,
-		previous: 'Témoignage précédent',
-		next: 'Témoignage suivant',
-		goTo: (index: number) => `Aller au témoignage ${index + 1}`,
 	},
 }[lang];
 

@@ -1,0 +1,9 @@
+---
+import PrivateDiningPage from '../../components/PrivateDiningPage.astro';
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'en' } }];
+}
+---
+
+<PrivateDiningPage lang="en" />

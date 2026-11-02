@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 import PageLayout from '../layouts/PageLayout.astro';
 import { getSite } from '../utils/consts';
 
-type Language = 'en' | 'fr';
+type Language = 'es' | 'en';
 type MenuId = string;
 const categories = ['STARTERS', 'MAINS', 'SIDES', 'DESSERTS', 'DRINKS', 'WINES', 'COCKTAILS'] as const;
 
@@ -28,6 +28,32 @@ const mealCategories = categories.filter((category) =>
 	dishes.some((dish) => dish.data.category === category),
 );
 const copy = {
+	es: {
+		eyebrow: 'Cocina mexicana contemporánea',
+		empty: 'Próximamente estará disponible nuestro menú.',
+		allCategories: 'Todas',
+		categories: {
+			STARTERS: 'ENTRADAS',
+			MAINS: 'PLATOS FUERTES',
+			SIDES: 'ACOMPAÑAMIENTOS',
+			DESSERTS: 'POSTRES',
+			DRINKS: 'BEBIDAS',
+			WINES: 'VINOS',
+			COCKTAILS: 'COCTELES',
+		},
+		tags: {
+			spicy: 'Picante',
+			vegetarian: 'Vegetariano',
+			alcohol: 'Contiene alcohol',
+			organic: 'Orgánico',
+		},
+		allergensLabel: 'Alérgenos',
+		allergens: {
+			seafood: 'Mariscos',
+			egg: 'Huevo',
+			gluten: 'Gluten',
+		},
+	},
 	en: {
 		eyebrow: 'Contemporary Mexican cuisine',
 		empty: 'Our menu is coming soon.',
@@ -51,32 +77,6 @@ const copy = {
 		allergens: {
 			seafood: 'Seafood',
 			egg: 'Egg',
-			gluten: 'Gluten',
-		},
-	},
-	fr: {
-		eyebrow: 'Cuisine mexicaine contemporaine',
-		empty: 'Notre menu arrive bientôt.',
-		allCategories: 'Tout',
-		categories: {
-			STARTERS: 'ENTRÉES',
-			MAINS: 'PLATS PRINCIPAUX',
-			SIDES: 'ACCOMPAGNEMENTS',
-			DESSERTS: 'DESSERTS',
-			DRINKS: 'BOISSONS',
-			WINES: 'VINS',
-			COCKTAILS: 'COCKTAILS',
-		},
-		tags: {
-			spicy: 'Épicé',
-			vegetarian: 'Végétarien',
-			alcohol: 'Contient de l’alcool',
-			organic: 'Biologique',
-		},
-		allergensLabel: 'Allergènes',
-		allergens: {
-			seafood: 'Fruits de mer',
-			egg: 'Œuf',
 			gluten: 'Gluten',
 		},
 	},

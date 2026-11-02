@@ -77,23 +77,23 @@ const site = defineCollection({
 		locale: z.string().optional(),
 		visit: z.object({
 			address: z.object({
+				es: z.string().min(1),
 				en: z.string().min(1),
-				fr: z.string().min(1),
 			}),
 			coordinates: z.object({
 				lat: z.number().min(-90).max(90),
 				lng: z.number().min(-180).max(180),
 			}).optional(),
 			publicTransport: z.object({
+				es: z.array(z.string().min(1)),
 				en: z.array(z.string().min(1)),
-				fr: z.array(z.string().min(1)),
 			}),
 			hours: z.object({
-				en: z.array(z.object({
+				es: z.array(z.object({
 					day: z.string().min(1),
 					schedule: z.string().min(1),
 				})).length(7),
-				fr: z.array(z.object({
+				en: z.array(z.object({
 					day: z.string().min(1),
 					schedule: z.string().min(1),
 				})).length(7),

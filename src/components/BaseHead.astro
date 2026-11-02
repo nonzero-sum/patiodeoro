@@ -51,7 +51,6 @@ const imageURL = new URL((image as ImageMetadata).src, Astro.site ?? Astro.url);
 		link: [
 			{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
 			{ rel: 'sitemap', href: '/sitemap-index.xml' },
-			{ rel: 'alternate', type: 'application/rss+xml', title: site.title, href: new URL('rss.xml', Astro.site).toString() },
 		],
 		meta: [
 			{ name: 'viewport', content: 'width=device-width,initial-scale=1' },

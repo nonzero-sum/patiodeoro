@@ -1,0 +1,9 @@
+---
+import VisitPage from '../../components/VisitPage.astro';
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'en' } }];
+}
+---
+
+<VisitPage lang="en" />

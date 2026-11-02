@@ -224,26 +224,6 @@
 		background: var(--color-surface);
 	}
 
-	.hero {
-		display: grid;
-		gap: 0.75rem;
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--color-border);
-		max-width: 780px;
-	}
-
-	.hero h1 {
-		font-size: clamp(2.25rem, 4vw, 3.25rem);
-		line-height: 1.1;
-		margin: 0;
-	}
-
-	.hero p {
-		margin: 0;
-		color: var(--color-muted);
-		max-width: 60ch;
-	}
-
 	.eyebrow {
 		letter-spacing: 0.38em;
 		text-transform: uppercase;

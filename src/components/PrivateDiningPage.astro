@@ -12,7 +12,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const site = await getSite();
-const spaces = (await getCollection('privateDiningSpaces'))
+const spaces = (await getCollection('spaces'))
 	.filter((space) => space.id.startsWith(`${lang}/`))
 	.sort((a, b) => a.id.localeCompare(b.id));
 

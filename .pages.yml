@@ -86,10 +86,10 @@ content:
         label: Hero image
         type: image
 
-  - name: privateDiningSpaces
-    label: Private Dining Spaces
+  - name: spaces
+    label: Spaces
     type: collection
-    path: src/content/private-dining-spaces
+    path: src/content/spaces
     format: yaml
     filename: '{primary}.yml'
     view:

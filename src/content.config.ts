@@ -56,8 +56,8 @@ const events = defineCollection({
 		}),
 });
 
-const privateDiningSpaces = defineCollection({
-		loader: glob({ base: './src/content/private-dining-spaces', pattern: '**/*.yml' }),
+const spaces = defineCollection({
+		loader: glob({ base: './src/content/spaces', pattern: '**/*.yml' }),
 		schema: ({ image }) =>
 			z.object({
 				name: z.string().trim().min(1),
@@ -155,4 +155,4 @@ const menu = defineCollection({
 		),
 });
 
-export const collections = { journal, socials, authors, events, privateDiningSpaces, site, testimonials, menu, menus };
+export const collections = { journal, socials, authors, events, spaces, site, testimonials, menu, menus };

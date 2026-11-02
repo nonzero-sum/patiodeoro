@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/zakaria-zayane-unsplash.jpg';
+import { withBase } from '../utils/slugify';
+
 interface Action {
 	label: string;
 	href: string;
@@ -12,45 +16,169 @@ interface Props {
 	actions?: Action[];
 }
 
-import { withBase } from '../utils/slugify';
-
 const { eyebrow, title, displayWord, description, actions = [] } = Astro.props;
 const displayWordIndex = displayWord ? title.indexOf(displayWord) : -1;
 ---
 
-<section class="content-shell flex items-center">
-	<div class="grid gap-4 max-w-3xl">
-		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
-		<h1 class="page-title">
-			{displayWordIndex >= 0 && displayWord ? (
-				<>
-					{title.slice(0, displayWordIndex)}
-					<span class="font-display">{displayWord}</span>
-					{title.slice(displayWordIndex + displayWord.length)}
-				</>
-			) : title}
-		</h1>
-		{description && <p class="text-muted text-base md:text-lg max-w-2xl m-0">{description}</p>}
-		{actions.length > 0 && (
-			<div class="flex flex-wrap gap-3 mt-3">
-				{actions.map((action) => (
-					<a class="button primary" href={withBase(action.href)}>
-						{action.label}
-					</a>
-				))}
-			</div>
-		)}
+<section class="hero">
+	<Image class="hero-image" src={heroImage} alt="" width={1440} height={960} loading="eager" />
+	<div class="hero-overlay" aria-hidden="true"></div>
+	<div class="content-shell hero-content">
+		<div class="grid max-w-3xl gap-4">
+			{eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
+			<h1>
+				{displayWordIndex >= 0 && displayWord ? (
+					<>
+						{title.slice(0, displayWordIndex)}
+						<span class="font-display">{displayWord}</span>
+						{title.slice(displayWordIndex + displayWord.length)}
+					</>
+				) : title}
+			</h1>
+			{description && <p class="hero-description">{description}</p>}
+			{actions.length > 0 && (
+				<div class="flex flex-wrap gap-3 pt-3">
+					{actions.map((action, index) => (
+						<a class:list={['hero-action', { 'hero-action-secondary': index > 0 }]} href={withBase(action.href)}>
+							{action.label}
+						</a>
+					))}
+				</div>
+			)}
+		</div>
 	</div>
 </section>
 
 <style>
-	.content-shell {
+	.hero {
+		position: relative;
+		display: flex;
+		align-items: end;
+		isolation: isolate;
+		width: 100vw;
+		max-width: none;
+		margin-left: calc(50% - 50vw);
 		min-height: calc(100vh - var(--header-height));
+		overflow: hidden;
+		background: #0c1620;
 	}
 
-	@media (max-width: 1023px) {
-		.content-shell {
+	.hero-image,
+	.hero-overlay {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.hero-image {
+		z-index: -2;
+		object-fit: cover;
+		object-position: center center;
+	}
+
+	.hero-overlay {
+		z-index: -1;
+		background:
+			linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 46%, var(--hero-overlay-end) 100%),
+			linear-gradient(0deg, var(--hero-overlay-bottom) 0%, transparent 62%);
+	}
+
+	:global(:root[data-theme='light']) {
+		--hero-overlay-start: rgb(5 5 5 / 78%);
+		--hero-overlay-middle: rgb(5 5 5 / 58%);
+		--hero-overlay-end: rgb(5 5 5 / 18%);
+		--hero-overlay-bottom: rgb(5 5 5 / 72%);
+	}
+
+	:global(:root[data-theme='dark']) {
+		--hero-overlay-start: rgb(0 0 0 / 88%);
+		--hero-overlay-middle: rgb(0 0 0 / 68%);
+		--hero-overlay-end: rgb(0 0 0 / 24%);
+		--hero-overlay-bottom: rgb(0 0 0 / 82%);
+	}
+
+	:global(:root[data-theme='blue']) {
+		--hero-overlay-start: rgb(5 18 53 / 90%);
+		--hero-overlay-middle: rgb(5 18 53 / 70%);
+		--hero-overlay-end: rgb(5 18 53 / 24%);
+		--hero-overlay-bottom: rgb(5 18 53 / 80%);
+	}
+
+	.hero-content {
+		padding-top: clamp(5rem, 13vh, 10rem);
+		padding-bottom: clamp(3rem, 10vh, 7rem);
+		color: #fff;
+	}
+
+	.hero-eyebrow {
+		margin: 0;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.28em;
+		text-transform: uppercase;
+		color: rgb(255 255 255 / 86%);
+	}
+
+	.hero-content h1 {
+		margin: 0;
+		font-size: clamp(2.75rem, 5vw, 5.25rem);
+		font-weight: 600;
+		line-height: 1.04;
+	}
+
+	.hero-description {
+		max-width: 42rem;
+		margin: 0;
+		font-size: clamp(1rem, 1.5vw, 1.2rem);
+		line-height: 1.6;
+		color: rgb(255 255 255 / 86%);
+	}
+
+	.hero-action {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.75rem;
+		padding: 0.65rem 1.1rem;
+		border: 1px solid #fff;
+		border-radius: 999px;
+		background: #fff;
+		color: #101820;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+	}
+
+	.hero-action:hover {
+		transform: translateY(-1px);
+		background: transparent;
+		color: #fff;
+	}
+
+	.hero-action-secondary {
+		border-color: rgb(255 255 255 / 58%);
+		background: rgb(255 255 255 / 12%);
+		color: #fff;
+	}
+
+	.hero-action-secondary:hover {
+		background: transparent;
+	}
+
+	@media (max-width: 720px) {
+		.hero {
 			min-height: calc(100vh - var(--header-height));
+		}
+
+		.hero-image {
+			object-position: 62% center;
+		}
+
+		.hero-overlay {
+			background: linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 100%), linear-gradient(0deg, var(--hero-overlay-bottom) 0%, transparent 70%);
 		}
 	}
 </style>

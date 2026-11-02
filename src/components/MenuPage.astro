@@ -109,7 +109,7 @@ const allergenIcons = {
 		{dishes.length === 0 ? (
 			<p class="text-muted">{text.empty}</p>
 		) : (
-			<div class="space-y-8" data-category-switcher>
+			<div class="space-y-10" data-category-switcher>
 				<div class="flex flex-wrap gap-2" aria-label={text.allCategories}>
 					<button
 						type="button"
@@ -133,14 +133,14 @@ const allergenIcons = {
 
 				{mealCategories.map((category) => (
 					<section
-						class="space-y-8"
+						class="space-y-5"
 						aria-labelledby={`category-${category}`}
 						data-category-section={category}
 					>
 						<h2 id={`category-${category}`} class="subsection-title border-b border-border pb-3">
 							{text.categories[category]}
 						</h2>
-						<div class="grid gap-x-10 sm:grid-cols-2">
+						<div class="grid gap-x-10 gap-y-6 sm:grid-cols-2">
 							{dishes
 								.filter((dish) => dish.data.category === category)
 								.map((dish) => (
